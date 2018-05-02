@@ -9,13 +9,14 @@
 	</head>
 	<body>
 
-		<?php include 'public/views/poisson-process.php' ?>
-
 		<script type="text/javascript" src="public/js/jquery.min.js"></script>
 		<script type="text/javascript" src="public/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="public/js/page-scroll.js"></script>
 		<script type="text/javascript" src="public/js/app.js"></script>
+		<script type="text/javascript" src="public/js/highcharts.js"></script>
 		<script type="text/javascript" src="public/js/poisson-process.js"></script>
+
+		<?php include 'public/views/poisson-process.php' ?>
 
 	</body>
 </html>

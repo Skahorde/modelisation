@@ -3,7 +3,7 @@
 	<h1 class="section-title">PROCESSUS DE POISSON</h1>
 	<hr class="separator">
 	<p class="section-subtitle">
-		La méthode hongroise d'affectation est un algorithme de résolution d'un problème d'affectation. C'est à dire, une recherche d'optimisation des ressources employées dans un problème.
+		Le processus de Poisson . Son utilisation est parfaite pour simuler l'arrivée d'individus dans une file d'attente.
 	</p>
 
 	<a id="about_button" class="btn-rounded block-center page-scroll" href="#calc_section">COMMENCER</a>
