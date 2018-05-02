@@ -1,0 +1,159 @@
+@charset 'UTF-8';
+
+@font-face {
+	font-family: Merriweather, "Helvetica Neue", Arial, sans-serif;
+	src: url('../fonts/fragment-core.otf');
+	font-weight: normal;
+	font-style: normal;
+}
+
+:root {
+	--primary-color: #2980b9; 
+	--success-color: #27ae60;
+	--warning-color: #f39c12;
+	--danger-color: #c0392b;
+	--black-color: #1e1e1e;
+	--white-color: #ecf0f1;
+}
+
+html, body {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+}
+
+a, button {
+	cursor: pointer;
+}
+
+section {
+	width: 100%;
+	min-height: 100%;
+}
+
+#app_header {
+	padding: 30px;
+}
+
+#app_header h1 {
+	color: var(--primary-color);
+	font-family: 'Lovely Home', Arial, sans-serif;
+	font-size: 50px;
+	margin: 0;
+}
+
+#home_section {
+	padding-top: 200px;
+	height: 77%;
+}
+
+#calc_section {
+	background-color: var(--primary-color);
+	padding-top: 20px;
+	padding-bottom: 50px;
+}
+
+#calc_section .separator {
+	border: solid var(--white-color) 2px;
+}
+
+#calc_section .section-title, #calc_section .section-subtitle {
+	color: var(--white-color);
+}
+
+#calc_section h3.section-subtitle {
+	font-size: 18px;
+	margin-bottom: 20px;
+}
+
+#simulation_button {
+	background-color: var(--white-color);
+	color: var(--primary-color) !important;
+	margin-top: 25px;
+}
+
+#section_subtitle {
+	margin-top: 40px;
+}
+
+.btn-rounded {
+	padding: 10px 20px;
+	width: 200px;	
+	border: 2px solid;	
+	border-radius: 20px;
+	text-align: center;
+	text-decoration: none !important;
+	font-size: 15px;
+}
+
+#about_button {
+	color: var(--primary-color) !important;
+	background-color: var(--transparent-color);
+	border-color: var(--primary-color);
+}
+
+#about_button:hover {
+	color: var(--white-color) !important;
+	background-color: var(--primary-color);
+}
+
+#simulation_button {
+	color: var(--white-color) !important;
+	background-color: var(--transparent-color);
+	border-color: var(--white-color);
+}
+
+#simulation_button:hover {
+	color: var(--primary-color) !important;
+	background-color: var(--white-color);
+}
+
+.block-center {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 30px;
+}
+
+.section-title {
+	font-family: 'Fragment Core', Arial, sans-serif;
+	color: var(--black-color);
+	text-align: center;
+	font-size: 40px;
+}
+
+hr.separator {
+	width: 30px;
+	border: solid var(--primary-color) 2px;
+}
+
+.section-subtitle {
+	max-width: 600px;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.bg-primary {
+	background-color: var(--primary-color);
+}
+
+.bg-success {
+	background-color: var(--primary-color);
+}
+
+.bg-white {
+	background-color: var(--white-color);
+}
+
+.field {
+	width: 400px;
+	margin-bottom: 20px;
+}
+
+#graph_container {
+    height: 250px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
