@@ -3,7 +3,7 @@
 	<h1 class="section-title">PROCESSUS DE POISSON</h1>
 	<hr class="separator">
 	<p class="section-subtitle">
-		Le processus de Poisson . Son utilisation est parfaite pour simuler l'arrivée d'individus dans une file d'attente.
+		Son utilisation est parfaite pour simuler l'arrivée d'individus dans une file d'attente.
 	</p>
 
 	<a id="about_button" class="btn-rounded block-center page-scroll" href="#calc_section">COMMENCER</a>
