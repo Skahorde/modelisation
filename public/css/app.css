@@ -150,10 +150,23 @@ hr.separator {
 .field {
 	width: 400px;
 	margin-bottom: 20px;
+	margin-top: 20px;
 }
 
 #graph_container {
-    height: 250px;
-    margin-top: 20px;
+    height: 300px;
+    margin-top: 40px;
     margin-bottom: 20px;
+}
+
+.field-name {
+	color: var(--white-color);
+	width: 400px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+rect.highcharts-background {
+	background-color: var(--primary-color) !important;
 }
