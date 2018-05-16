@@ -135,7 +135,7 @@
 
             for (timer; timer < t; timer += loiExponentielle(lambda))
             {
-                if (t <= 10) // On ne réalise la partie graphique que si T <= 10
+                if (t <= 100) // On ne réalise la partie graphique que si T <= 100
                 {
                     chart.series[0].addPoint(
                     // timer = abscisse & 1 = ordonnée
