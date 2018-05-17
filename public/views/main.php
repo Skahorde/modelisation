@@ -87,6 +87,16 @@
                 Veuillez saisir les paramètre Lambda(λ), Mu(μ) ainsi que le nombre d'intervalles souhaité (T).</h3>
                 <p class="indication"> Pour saisir un réel, il faut utiliser la virgule (,) et non le point (.). </p>               
 
+                <div class="col-md-4">
+
+                    <p class="field-name">Phénomène :</p>
+                    <select id="phenomene" class="field block-center">
+                        <option value="1">Markovien</option>
+                        <option value="2">Non Markovien</option>
+                    </select>
+
+                </div>  
+
                 <div class="col-md-12">
 
                     <div class="col-md-4">
@@ -172,6 +182,11 @@
 </section>
 
 <script type="text/javascript">
+    
+    loiNormale = function(lambda)
+    {
+        return (Math.sqrt5-2 * Math.log(lambda) * Math.cos(2 * Math.PI * Math.random()));
+    }
 
     loiExponentielle = function(lambda)
     {
@@ -296,14 +311,19 @@
             let moy_time = 0;
             let moy_time_2 = 0;
             let cpt_time = 0;
-
-            var tableauArrivees = [];
-
-            // On initialise directement le timer à une valeur aléatoire et non à 0
-            let timer = loiExponentielle(lambda)
+            var tableauArrivees = []; 
+            var type_processus = document.getElementById("phenomene").options[document.getElementById("phenomene").selectedIndex].value; 
+            // TODO type_processus comporte l'indice du choix utilisateur : 1 pour processus Markovien et 2 pour non Markovien
+            // Du coup, il faudrait ajouter une condition quelque part :
+            // if (type_processus == 1) { le nombre aléatoire généré (occurence ou variable cpt dans notre cas) suit une loi exponentielle }
+            // else { ce nombre suit la loi normale }
+           
 
             // On vide la console
             console.clear();
+
+            // On initialise directement le timer à une valeur aléatoire et non à 0
+            let timer = loiExponentielle(lambda);
 
             // On vide le graphe
             chart.series[0].remove(true);
