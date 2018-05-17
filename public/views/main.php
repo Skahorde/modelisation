@@ -139,39 +139,37 @@
 
                 <div class="cases">
                     <p>Arrivées :</p>
-                    <p><span id="lambda"></span>/min</p>
+                    <span id="lambda" class="span-cases"></span>/min
                 </div>
 
             </div>
 
-            <div class="col-md-1">
+            <div class="col-md-1 arrows">
 
-                <div class="arrows">
                     <i class="arrow fa fa-5x fa-arrow-circle-right"></i>
-                </div>
+
             </div>
 
             <div class="col-md-4">
 
                 <div class="cases">
                     <p>File d'attente :</p>
-                    <p><span id="wait"></span> clients</p>
+                    <span id="wait" class="span-cases"></span> clients
                 </div>
 
             </div>
 
-            <div class="col-md-1">
+            <div class="col-md-1 arrows">
 
-                <div class="arrows">
                     <i class="arrow fa fa-5x fa-arrow-circle-right"></i>
-                </div>
+
             </div>
 
             <div class="col-md-3">
 
                 <div class="cases">
                     <p>Traitement :</p>
-                    <p><span id="mu"></span>/min</p>
+                    <span id="mu" class="span-cases"></span>/min
                 </div>
 
             </div>
@@ -224,6 +222,11 @@
                 name: 'Occurrences',
                 data: [ ],
                 color: '#e84c0fff'
+            },
+            {
+                name: 'Intervalles',
+                data: [ ],
+                color: 'black'
             }]
         });
 
@@ -248,13 +251,32 @@
             console.clear();
 
             // On vide le graphe
+            // Suppression des deux axes (quand on supprime le premier à l'indice 0, le deuxième axe récupère l'indice et est à son tour l'indice 0. Ce n'est pas un doublon)
             chart.series[0].remove(true);
+            chart.series[0].remove(true);
+
+            // Série des occurences
             chart.addSeries({
                 name: 'Occurrences',
                 data: [ ],
                 color: '#e84c0fff'
             });
 
+            // Série des intervalles
+            chart.addSeries({
+                name: 'Intervalles',
+                data: [ ],
+                color: 'black'
+            });
+
+            for (cpt; cpt < t; cpt++)
+            {
+                chart.series[1].addPoint(
+                    [ cpt, 1 ], true
+                    );
+            }
+
+            cpt = 0;
 
             for (timer; timer < t; timer += loiExponentielle(lambda))
             {
