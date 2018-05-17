@@ -55,7 +55,7 @@ section {
 }
 
 #sim_section {
-	background-color: var(--white-color);
+	background-color: white;
 	padding-top: 20px;
 }
 
@@ -74,13 +74,7 @@ section {
 
 #sim_section h3.section-subtitle {
 	font-size: 18px;
-	margin-bottom: 100px;
-}
-
-#simulation_button {
-	background-color: var(--white-color);
-	color: var(--primary-color) !important;
-	margin-top: 25px;
+	margin-bottom: 20px;
 }
 
 #section_subtitle {
@@ -117,6 +111,18 @@ section {
 #simulation_button:hover {
 	color: var(--primary-color) !important;
 	background-color: var(--white-color);
+}
+
+#simulation_button_bis {
+	background-color: white;
+	color: var(--primary-color) !important;
+	margin-top: 20px;
+	margin-bottom: 40px;
+}
+
+#simulation_button_bis:hover {
+	color: var(--primary-color) !important;
+	background-color: var(--primary-color);
 }
 
 .block-center {
@@ -193,6 +199,7 @@ rect.highcharts-background {
 .cases {
 	display: inline-block;
 	border: 3px solid var(--primary-color);
+	background-color: var(--primary-color);
 	text-align: center;
 	min-height: 150px;
 	min-width: 150px;
@@ -207,6 +214,7 @@ rect.highcharts-background {
 
 .cases > p {
 	text-decoration: underline;
+	color: white;
 }
 
 .arrows {
@@ -219,4 +227,8 @@ rect.highcharts-background {
 .arrow {
 	min-height: 150px;
 	margin: auto;
+}
+
+.sim-fields p {
+	color : var(--primary-color);
 }
