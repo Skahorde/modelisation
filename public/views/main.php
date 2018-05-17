@@ -99,7 +99,7 @@
                     <div class="col-md-4">
 
                         <p class="field-name">Mu (μ) :</p>
-                        <input type="number" id="mu_sim_input" class="field block-center">
+                        <input type="number" id="mu_input" class="field block-center">
 
                     </div>
 
@@ -129,7 +129,7 @@
 
                 <div class="cases">
                     <p>Arrivées :</p>
-                    <span id="lambda"></span>
+                    <p><span id="lambda"></span>/min</p>
                 </div>
 
             </div>
@@ -145,7 +145,7 @@
 
                 <div class="cases">
                     <p>File d'attente :</p>
-                    <span id="wait"></span>
+                    <p><span id="wait"></span> clients</p>
                 </div>
 
             </div>
@@ -161,7 +161,7 @@
 
                 <div class="cases">
                     <p>Traitement :</p>
-                    <span id="mu"></span>
+                    <p><span id="mu"></span>/min</p>
                 </div>
 
             </div>
@@ -173,11 +173,6 @@
 
 <script type="text/javascript">
 
-    loiNormale = function() 
-    {
-        return (Math.sqrt(-2 * Math.random()) * Math.cos(2 * Math.PI * Math.random()));
-    };
-    
     loiExponentielle = function(lambda)
     {
         return -(Math.log(1.0 - Math.random()) / lambda);
@@ -283,37 +278,17 @@
             console.log("Le temps d'attente moyen entre deux arrivées est de : " + moy_time_2 + " secondes");
         });
 
-        /// Permet la gestion de pression sur la touche "Entrée" pour valider les saisies utilisateur
-        // Champ d'entrée
-        var lambda_sim_input = document.getElementById("lambda_sim_input");
-        var t_sim_input = document.getElementById("t_sim_input");
+        
 
-        // Réalise un clic sur le bouton "SIMULER" si l'utilisateur appuie sur entrée
-        lambda_sim_input.addEventListener("keyup", function(event) 
-        {
-            // Annule l'action par défaut au cas où...
-            event.preventDefault();
-            // 13 correspond à la touche entrée
-            if (event.keyCode === 13) {
-                // Déclenche le bouton "SIMULER"
-                document.getElementById("simulation_button_bis").click();
-            }
-        });
-        // Même chose pour l'autre champ
-        t_sim_input.addEventListener("keyup", function(event) 
-        {
-            event.preventDefault();
-            if (event.keyCode === 13) {
-                document.getElementById("simulation_button_bis").click();
-            }
-        });
 
-                // Action qui suit le clic du bouton "SIMULER" de la section "sim"
-        $('#simulation_sim_button').on('click', function()
+
+        // Action qui suit le clic du bouton "SIMULER" de la section "sim"
+        $('#simulation_button_bis').on('click', function()
         {
             // Initialisation & récupération des variables
             let chart  = $('#graph_container').highcharts();
             let lambda = parseFloat($('#lambda_sim_input').val());
+            let mu = parseFloat($('#mu_input').val());
             let t   = parseInt($('#t_sim_input').val(), 10);
             let cpt = 0;
             let i = 1;
@@ -321,6 +296,8 @@
             let moy_time = 0;
             let moy_time_2 = 0;
             let cpt_time = 0;
+
+            var tableauArrivees = [];
 
             // On initialise directement le timer à une valeur aléatoire et non à 0
             let timer = loiExponentielle(lambda)
@@ -339,7 +316,7 @@
 
             for (timer; timer < t; timer += loiExponentielle(lambda))
             {
-                if (t <= 10) // On ne réalise la partie graphique que si T <= 100
+                if (t <= 10) // On ne réalise la partie graphique que si T <= 10
                 {
                     chart.series[0].addPoint(
                     // timer = abscisse & 1 = ordonnée
@@ -347,30 +324,57 @@
                     );
                 }      
 
-                    moy_time = moy_time + timer;
-                    cpt_time++;
-                    moy_time_2 = moy_time/cpt_time;               
+                moy_time = moy_time + timer;
+                cpt_time++;
+                moy_time_2 = moy_time/cpt_time;               
 
                 if (timer > i) // A chaque dépassement d'intervalles, on affiche le nombre d'Occurrences du précédent, on remet les compteurs à 0
-                {                    
+                {
                     console.log("Pour l'intervalle n°" + i + ", il y a " + cpt + " Occurrences.");
+                    
+                    document.getElementById("lambda").innerHTML = cpt;
+                    tableauArrivees.push(cpt);
+                    
+                    document.getElementById("mu").innerHTML = mu;
+
                     moy = moy + cpt;
+                    cpt = 0;
                     i++;
-                    moyenne_temporaire = moy/i;
-                    console.log("Le nombre moyen temporaire constaté d'Occurrences/intervalle, est de : " + moyenne_temporaire);
-                    cpt = 0;                    
                 }
 
                 cpt++;
-
             }
+
             console.log("Pour l'intervalle n°" + i + ", il y a " + cpt + " Occurrences.");
+            
+            document.getElementById("lambda").innerHTML = cpt;
+            tableauArrivees.push(cpt);
+            
+            document.getElementById("mu").innerHTML = mu;
+
             moy = moy + cpt;
 
             // Calcul et affichage du nombre moyen constaté d'Occurrences de la simulation
             moy = moy/i;
             console.log("Le nombre moyen constaté d'Occurrences/intervalle est de : " + moy);
             console.log("Le temps d'attente moyen entre deux arrivées est de : " + moy_time_2);
+
+            // Nombre de clients restants dans la file d'attente : E(NbF)
+            var nbf = 0, clients = 0;
+
+            for (i = 0; i < tableauArrivees.length; i ++) {
+                clients = clients + tableauArrivees[i];
+                
+                nbf = clients - mu;
+                if (nbf < 0) nbf = 0;
+
+                clients = clients - mu;
+                if (clients < 0) clients = 0;
+            }
+
+            console.log("Nombre de clients dans la file : " + nbf);
+            console.log("Nombre de clients restants après traitement : " + clients);
+            document.getElementById("wait").innerHTML = clients;
         });
 
         /// Permet la gestion de pression sur la touche "Entrée" pour valider les saisies utilisateur
