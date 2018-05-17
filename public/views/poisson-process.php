@@ -1,9 +1,9 @@
 <section id="home_section">
 	
-	<h1 class="section-title">PROCESSUS DE POISSON</h1>
+	<h1 class="section-title">REMONTÉES DE SKI</h1>
 	<hr class="separator">
 	<p class="section-subtitle">
-		Son utilisation est parfaite pour simuler l'arrivée d'individus dans une file d'attente.
+		Projet de simulation d'un système de remontées mécaniques de ski.
 	</p>
 
 	<a id="about_button" class="btn-rounded block-center page-scroll" href="#calc_section">COMMENCER</a>
@@ -24,29 +24,30 @@
 
 				<div class="col-md-12">
 
-					<h3 class="section-subtitle"> Pour simuler un processus de poisson, il est nécessaire de renseigner : </h3>				
+					<h3 class="section-subtitle">Veuillez saisir le paramètre λ de la loi suivie par les arrivées dans le système, ainsi que le nombre d'intervalles souhaité (T).</h3>
+                    <p class="indication"> Pour saisir un réel, il faut utiliser la virgule (,) et non le point (.). </p>				
 
 					<div class="col-md-12">
-
-                        <div class="col-md-6">
-
-                            <p class="field-name">Temps (T) :</p>
-						    <input type="number" id="t_input" class="field block-center">
-
-                        </div>
 
                         <div class="col-md-6">
                             
                             <p class="field-name">Lambda (λ) :</p>
                             <input type="number" id="lambda_input" class="field block-center" step="any">
 
-                        </div>                        
+                        </div>  
+
+                        <div class="col-md-6">
+
+                            <p class="field-name">Temps (T) :</p>
+						    <input type="number" id="t_input" class="field block-center">
+
+                        </div>                                              
 
 					</div>
 
 					<div class="col-md-12">
 
-						<a id="simulation_button" class="btn-rounded block-center">SIMULER</a>
+						<a id="simulation_button" class="btn-rounded block-center page-scroll" href="#sim_section">SIMULER</a>
 
 					</div>
 
@@ -63,6 +64,77 @@
 		</div>
 
 	</div>
+
+</section>
+
+<section id="sim_section">
+
+    <h2 class="section-title">Simulation du phénomène</h2>
+
+    <div class="container-fluid">
+        
+        <div class="row">
+            
+            <div class="col-md-12">
+
+                <hr class="separator simu">
+
+            </div>
+
+            <div class="col-md-12">
+
+                    <h3 class="section-subtitle">La mise à jour des nombres est faite en temps réel.</h3>
+
+            </div>
+
+        </div>
+
+
+        <div class="row">
+            
+            <div class="col-md-3">
+
+                <div class="cases">
+                    <p>Arrivées :</p>
+                    <span></span>
+                </div>
+
+            </div>
+
+            <div class="col-md-1">
+
+                <div class="arrows">
+                    <i class="arrow fa fa-5x fa-arrow-circle-right"></i>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+
+                <div class="cases">
+                    <p>File d'attente :</p>
+                    <span></span>
+                </div>
+
+            </div>
+
+            <div class="col-md-1">
+
+                <div class="arrows">
+                    <i class="arrow fa fa-5x fa-arrow-circle-right"></i>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+
+                <div class="cases">
+                    <p>Traitement :</p>
+                    <span></span>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
 
 </section>
 
