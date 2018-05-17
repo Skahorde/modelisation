@@ -175,8 +175,8 @@
 
     loiNormale = function() 
     {
-        return (Math.sqrt(-2 * Math.random()) * Math.cos(2 * Math.PI * Math.random());
-    }
+        return (Math.sqrt(-2 * Math.random()) * Math.cos(2 * Math.PI * Math.random()));
+    };
     
     loiExponentielle = function(lambda)
     {
