@@ -51,7 +51,7 @@ section {
 #calc_section {
 	background-color: var(--primary-color);
 	padding-top: 20px;
-	padding-bottom: 50px;
+	padding-bottom: 30px;
 }
 
 #sim_section {
@@ -218,15 +218,15 @@ rect.highcharts-background {
 }
 
 .arrows {
-	width: 100%;
-	height: 100%;
 	align-content: center;
-	vertical-align: center;
+	vertical-align: middle;
 }
 
 .arrow {
 	min-height: 150px;
-	margin: auto;
+	width: 100%;
+	padding-left: 20%;
+	padding-top: 40%;
 }
 
 .sim-fields p {
