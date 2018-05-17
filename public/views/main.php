@@ -87,7 +87,7 @@
                 Veuillez saisir les paramètre Lambda(λ), Mu(μ) ainsi que le nombre d'intervalles souhaité (T).</h3>
                 <p class="indication"> Pour saisir un réel, il faut utiliser la virgule (,) et non le point (.). </p>               
 
-                <div class="col-md-4">
+                <div class="col-md-12">
 
                     <p class="field-name">Phénomène :</p>
                     <select id="phenomene" class="field block-center">
@@ -121,6 +121,12 @@
                     </div>                                              
 
                 </div>
+
+            </div>
+
+            <div class="col-md-12">
+
+                <p id="psi" class="field-name">Psi (Ψ) = <span id="psi"></span></p>
 
             </div>
 
@@ -183,7 +189,7 @@
     
     loiNormale = function(lambda)
     {
-        return (Math.sqrt5-2 * Math.log(lambda) * Math.cos(2 * Math.PI * Math.random()));
+        return (Math.sqrt(-2 * Math.log(lambda) * Math.cos(2 * Math.PI *Math.random())));
     }
 
     loiExponentielle = function(lambda)
@@ -333,30 +339,114 @@
             let moy_time = 0;
             let moy_time_2 = 0;
             let cpt_time = 0;
+            let psi = 0;
+            let timer = 0;
             var tableauArrivees = []; 
             var type_processus = document.getElementById("phenomene").options[document.getElementById("phenomene").selectedIndex].value; 
             // TODO type_processus comporte l'indice du choix utilisateur : 1 pour processus Markovien et 2 pour non Markovien
             // Du coup, il faudrait ajouter une condition quelque part :
             // if (type_processus == 1) { le nombre aléatoire généré (occurence ou variable cpt dans notre cas) suit une loi exponentielle }
             // else { ce nombre suit la loi normale }
-           
+
+            // Calcul et affichage du Psi
+            psi = lambda/mu;
+            document.getElementById("psi").innerHTML = "Psi (Ψ) = " + psi;
 
             // On vide la console
             console.clear();
 
-            // On initialise directement le timer à une valeur aléatoire et non à 0
-            let timer = loiExponentielle(lambda);
-
             // On vide le graphe
+            // Suppression des deux axes (quand on supprime le premier à l'indice 0, le deuxième axe récupère l'indice et est à son tour l'indice 0. Ce n'est pas un doublon)
             chart.series[0].remove(true);
+            chart.series[0].remove(true);
+
+            // Série des occurences
             chart.addSeries({
                 name: 'Occurrences',
                 data: [ ],
                 color: '#e84c0fff'
             });
 
+            // Série des intervalles
+            chart.addSeries({
+                name: 'Intervalles',
+                data: [ ],
+                color: 'black'
+            });
 
-            for (timer; timer < t; timer += loiExponentielle(lambda))
+            console.log(loiNormale(lambda));
+
+            if (type_processus == 1)
+            {
+                timer = loiExponentielle(lambda);
+
+                for (timer; timer < t; timer += loiExponentielle(lambda))
+                {
+                    if (t <= 10) // On ne réalise la partie graphique que si T <= 10
+                    {
+                        chart.series[0].addPoint(
+                        // timer = abscisse & 1 = ordonnée
+                        [ timer, 1 ], true
+                        );
+                    }      
+
+                    moy_time = moy_time + timer;
+                    cpt_time++;
+                    moy_time_2 = moy_time/cpt_time;               
+
+                    if (timer > i) // A chaque dépassement d'intervalles, on affiche le nombre d'Occurrences du précédent, on remet les compteurs à 0
+                    {
+                        console.log("Pour l'intervalle n°" + i + ", il y a " + cpt + " Occurrences.");
+                        
+                        document.getElementById("lambda").innerHTML = cpt;
+                        tableauArrivees.push(cpt);
+                        
+                        document.getElementById("mu").innerHTML = mu;
+
+                        moy = moy + cpt;
+                        cpt = 0;
+                        i++;
+                    }
+
+                    cpt++;
+                }
+
+            } else {
+                timer = loiNormale(lambda);
+
+                for (timer; timer < t; timer += loiNormale(lambda))
+                {
+                    if (t <= 10) // On ne réalise la partie graphique que si T <= 10
+                    {
+                        chart.series[0].addPoint(
+                        // timer = abscisse & 1 = ordonnée
+                        [ timer, 1 ], true
+                        );
+                    }      
+
+                    moy_time = moy_time + timer;
+                    cpt_time++;
+                    moy_time_2 = moy_time/cpt_time;               
+
+                    if (timer > i) // A chaque dépassement d'intervalles, on affiche le nombre d'Occurrences du précédent, on remet les compteurs à 0
+                    {
+                        console.log("Pour l'intervalle n°" + i + ", il y a " + cpt + " Occurrences.");
+                        
+                        document.getElementById("lambda").innerHTML = cpt;
+                        tableauArrivees.push(cpt);
+                        
+                        document.getElementById("mu").innerHTML = mu;
+
+                        moy = moy + cpt;
+                        cpt = 0;
+                        i++;
+                    }
+
+                    cpt++;
+                }
+            }
+
+            for (timer; timer < t; timer += ajout_timer)
             {
                 if (t <= 10) // On ne réalise la partie graphique que si T <= 10
                 {

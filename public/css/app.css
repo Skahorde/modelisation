@@ -116,8 +116,8 @@ section {
 #simulation_button_bis {
 	background-color: white;
 	color: var(--primary-color) !important;
-	margin-top: 20px;
-	margin-bottom: 60px;
+	margin-bottom: 30px;
+	margin-top: 0px;
 }
 
 #simulation_button_bis:hover {
@@ -229,10 +229,14 @@ rect.highcharts-background {
 	padding-top: 40%;
 }
 
-.sim-fields p {
-	color : var(--primary-color);
-}
-
 .span-cases {
 	color: white;
+}
+
+.sim-fields p {
+	color: var(--primary-color);
+}
+
+#psi {
+	color: var(--primary-color);
 }
