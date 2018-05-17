@@ -121,7 +121,7 @@ section {
 }
 
 #simulation_button_bis:hover {
-	color: var(--primary-color) !important;
+	color: var(--white-color) !important;
 	background-color: var(--primary-color);
 }
 
@@ -209,12 +209,12 @@ rect.highcharts-background {
 	width: 100%;
 	font-weight: bold;
 	font-size: 16px;
-	color: var(--black-color);
+	color: white;
 }
 
 .cases > p {
 	text-decoration: underline;
-	color: white;
+	margin-bottom: 40px;
 }
 
 .arrows {
@@ -231,4 +231,8 @@ rect.highcharts-background {
 
 .sim-fields p {
 	color : var(--primary-color);
+}
+
+.span-cases {
+	color: white;
 }

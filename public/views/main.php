@@ -129,7 +129,7 @@
 
                 <div class="cases">
                     <p>Arrivées :</p>
-                    <p><span id="lambda"></span>/min</p>
+                    <span id="lambda" class="span-cases"></span>/min
                 </div>
 
             </div>
@@ -144,7 +144,7 @@
 
                 <div class="cases">
                     <p>File d'attente :</p>
-                    <p><span id="wait"></span> clients</p>
+                    <span id="wait" class="span-cases"></span> clients
                 </div>
 
             </div>
@@ -159,7 +159,7 @@
 
                 <div class="cases">
                     <p>Traitement :</p>
-                    <p><span id="mu"></span>/min</p>
+                    <span id="mu" class="span-cases"></span>/min
                 </div>
 
             </div>
