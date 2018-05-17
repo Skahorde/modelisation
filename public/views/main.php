@@ -47,7 +47,7 @@
 
 					<div class="col-md-12">
 
-						<a id="simulation_button" class="btn-rounded block-center page-scroll" href="#sim_section">SIMULER</a>
+						<a id="simulation_button" class="btn-rounded block-center page-scroll" href="#calc_section">SIMULER</a>
 
 					</div>
 
