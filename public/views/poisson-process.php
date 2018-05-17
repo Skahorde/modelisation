@@ -140,6 +140,11 @@
 
 <script type="text/javascript">
 
+    loiNormale = function() 
+    {
+        return (Math.sqrt(-2 * Math.random()) * Math.cos(2 * Math.PI * Math.random());
+    }
+    
     loiExponentielle = function(lambda)
     {
         return -(Math.log(1.0 - Math.random()) / lambda);
