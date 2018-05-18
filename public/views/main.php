@@ -109,7 +109,7 @@
                     <div class="col-md-4">
 
                         <p class="field-name">Mu (μ) :</p>
-                        <input type="number" id="mu_input" class="field block-center">
+                        <input type="number" id="mu_sim_input" class="field block-center">
 
                     </div>
 
@@ -321,17 +321,41 @@
             console.log("Le temps d'attente moyen entre deux arrivées est de : " + moy_time_2 + " secondes");
         });
 
-        
+        /// Permet la gestion de pression sur la touche "Entrée" pour valider les saisies utilisateur
+        // Champ d'entrée
+        var lambda_input = document.getElementById("lambda_input");
+        var t_input = document.getElementById("t_input");
+
+        // Réalise un clic sur le bouton "SIMULER" si l'utilisateur appuie sur entrée
+        lambda_input.addEventListener("keyup", function(event) 
+        {
+            // Annule l'action par défaut au cas où...
+            event.preventDefault();
+            // 13 correspond à la touche entrée
+            if (event.keyCode === 13) {
+                // Déclenche le bouton "SIMULER"
+                document.getElementById("simulation_button").click();
+            }
+        });
+        // Même chose pour l'autre champ
+        t_input.addEventListener("keyup", function(event) 
+        {
+            event.preventDefault();
+            if (event.keyCode === 13) {
+                document.getElementById("simulation_button").click();
+            }
+        });
 
 
 
+        //
         // Action qui suit le clic du bouton "SIMULER" de la section "sim"
         $('#simulation_button_bis').on('click', function()
         {
             // Initialisation & récupération des variables
             let chart  = $('#graph_container').highcharts();
             let lambda = parseFloat($('#lambda_sim_input').val());
-            let mu = parseFloat($('#mu_input').val());
+            let mu = parseFloat($('#mu_sim_input').val());
             let t   = parseInt($('#t_sim_input').val(), 10);
             let cpt = 0;
             let i = 1;
@@ -343,10 +367,6 @@
             let timer = 0;
             var tableauArrivees = []; 
             var type_processus = document.getElementById("phenomene").options[document.getElementById("phenomene").selectedIndex].value; 
-            // TODO type_processus comporte l'indice du choix utilisateur : 1 pour processus Markovien et 2 pour non Markovien
-            // Du coup, il faudrait ajouter une condition quelque part :
-            // if (type_processus == 1) { le nombre aléatoire généré (occurence ou variable cpt dans notre cas) suit une loi exponentielle }
-            // else { ce nombre suit la loi normale }
 
             // Calcul et affichage du Psi
             psi = lambda/mu;
@@ -374,7 +394,12 @@
                 color: 'black'
             });
 
-            console.log(loiNormale(lambda));
+            for (cpt; cpt < t; cpt++)
+            {
+                chart.series[1].addPoint(
+                    [ cpt, 1 ], true
+                    );
+            }
 
             if (type_processus == 1)
             {
@@ -511,26 +536,35 @@
 
         /// Permet la gestion de pression sur la touche "Entrée" pour valider les saisies utilisateur
         // Champ d'entrée
-        var lambda_input = document.getElementById("lambda_input");
-        var t_input = document.getElementById("t_input");
+        var lambda_sim_input = document.getElementById("lambda_sim_input");
+        var mu_sim_input = document.getElementById("mu_sim_input");
+        var t_sim_input = document.getElementById("t_sim_input");
 
         // Réalise un clic sur le bouton "SIMULER" si l'utilisateur appuie sur entrée
-        lambda_input.addEventListener("keyup", function(event) 
+        lambda_sim_input.addEventListener("keyup", function(event) 
         {
             // Annule l'action par défaut au cas où...
             event.preventDefault();
             // 13 correspond à la touche entrée
             if (event.keyCode === 13) {
                 // Déclenche le bouton "SIMULER"
-                document.getElementById("simulation_button").click();
+                document.getElementById("simulation_button_bis").click();
             }
         });
         // Même chose pour l'autre champ
-        t_input.addEventListener("keyup", function(event) 
+        mu_sim_input.addEventListener("keyup", function(event) 
         {
             event.preventDefault();
             if (event.keyCode === 13) {
-                document.getElementById("simulation_button").click();
+                document.getElementById("simulation_button_bis").click();
+            }
+        });
+        // Même chose pour l'autre champ
+        t_sim_input.addEventListener("keyup", function(event) 
+        {
+            event.preventDefault();
+            if (event.keyCode === 13) {
+                document.getElementById("simulation_button_bis").click();
             }
         });
 
